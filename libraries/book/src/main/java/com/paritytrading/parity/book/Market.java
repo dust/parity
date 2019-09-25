@@ -19,18 +19,28 @@ import it.unimi.dsi.fastutil.longs.Long2ObjectArrayMap;
 import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;
 
 /**
- * A market.
+ * A market. trade pair.
+ *
  */
 public class Market {
 
+    /**
+     * 用户提交的成交订单表（还未成交），以 `instrument`为序。
+     */
     private final Long2ObjectArrayMap<OrderBook> books;
 
+    /**
+     * 用户提交订单，以订单id为序。
+     */
     private final Long2ObjectOpenHashMap<Order> orders;
 
+    /**
+     * 订单变化事件监听器。向外传播事件。
+     */
     private final MarketListener listener;
 
     /**
-     * Create a market.
+     * Create a market. 空的市场，还没有开放任何交易对。`instrument`
      *
      * @param listener a listener for outbound events from the market
      */
@@ -78,10 +88,12 @@ public class Market {
      * @param size the size
      */
     public void add(long instrument, long orderId, Side side, long price, long size) {
+        // 冪等性。是否已提交过。orderId必须全局唯一。
         if (orders.containsKey(orderId))
             return;
 
         OrderBook book = books.get(instrument);
+        // 无效交易对
         if (book == null)
             return;
 

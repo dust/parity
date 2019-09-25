@@ -16,15 +16,21 @@
 package com.paritytrading.parity.book;
 
 /**
- * An order.
+ * An order. 用户订单。
  */
 public class Order {
 
+    /**
+     * 用户订单持有所属订单表的引用。
+     */
     private final OrderBook book;
 
     private final Side side;
     private final long price;
 
+    /**
+     * 用户订单的剩余数量。
+     */
     private long remainingQuantity;
 
     Order(OrderBook book, Side side, long price, long size) {
@@ -72,10 +78,18 @@ public class Order {
         return remainingQuantity;
     }
 
+    /**
+     * 重设交易数量。比如个性订单数量。
+     * @param remainingQuantity
+     */
     void setRemainingQuantity(long remainingQuantity) {
         this.remainingQuantity = remainingQuantity;
     }
 
+    /**
+     * 削减数量，比如部分成交。
+     * @param quantity
+     */
     void reduce(long quantity) {
         remainingQuantity -= quantity;
     }
