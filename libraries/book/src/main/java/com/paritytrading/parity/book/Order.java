@@ -43,7 +43,7 @@ public class Order {
     }
 
     /**
-     * Get the order book.
+     * Get the order book to which the order belongs.
      *
      * @return the order book
      */
@@ -79,7 +79,7 @@ public class Order {
     }
 
     /**
-     * 重设交易数量。比如个性订单数量。
+     * 重设交易数量。比如修改订单数量。
      * @param remainingQuantity
      */
     void setRemainingQuantity(long remainingQuantity) {

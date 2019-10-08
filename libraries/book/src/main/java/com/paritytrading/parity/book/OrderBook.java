@@ -20,7 +20,8 @@ import it.unimi.dsi.fastutil.longs.LongComparators;
 import it.unimi.dsi.fastutil.longs.LongSortedSet;
 
 /**
- * An order book.
+ * An basic order book.
+ * 一个基本订单簿。同源订单。
  */
 public class OrderBook {
 
@@ -108,6 +109,7 @@ public class OrderBook {
     }
 
     boolean add(Side side, long price, long quantity) {
+        // bids or asks
         Long2LongRBTreeMap levels = getLevels(side);
 
         levels.addTo(price, quantity);

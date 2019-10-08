@@ -19,18 +19,18 @@ import it.unimi.dsi.fastutil.longs.Long2ObjectArrayMap;
 import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;
 
 /**
- * A market. trade pair.
+ * A market. all trade pair
  *
  */
 public class Market {
 
     /**
-     * 用户提交的成交订单表（还未成交），以 `instrument`为序。
+     * 用户提交的成交订单簿的集合（还未成交），以 `instrument`为序。
      */
     private final Long2ObjectArrayMap<OrderBook> books;
 
     /**
-     * 用户提交订单，以订单id为序。
+     * 用户提交订单集合，以订单id为序。
      */
     private final Long2ObjectOpenHashMap<Order> orders;
 
@@ -40,7 +40,7 @@ public class Market {
     private final MarketListener listener;
 
     /**
-     * Create a market. 空的市场，还没有开放任何交易对。`instrument`
+     * Create a market. 空的市场，还没有开放任何交易对（`instrument`）。
      *
      * @param listener a listener for outbound events from the market
      */

@@ -1,4 +1,9 @@
 *.jar
 *.iml
+.eclipse
+.project
+.settings
+.classpath
+.factorypath
 .idea/
 target/
